@@ -16,7 +16,7 @@ export async function clearDatabase() {
 
   for (const entity of entities) {
     try {
-      await connection.query(`DELETE FROM "${entity.tableName}"`);
+      await connection.query(`TRUNCATE "${entity.tableName}" RESTART IDENTITY CASCADE`);
     } catch {
       entities.push(entity);
     }

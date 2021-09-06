@@ -2,19 +2,23 @@ import Barbecue from "../../src/entities/Barbecues";
 import faker from "faker";
 
 export async function createBarbecue() {
-  const barbecue = {
+  const barbecue = Barbecue.create({
     name: faker.name.firstName(),
-    date: faker.date.future(),
+    date: "05/12",
     description: faker.lorem.lines(),
     observations: faker.lorem.lines(),
     amountCollected: 150,
     totalParticipants: 10,
     userId: 1,
-  };
+  });
+
+  await barbecue.save();
 
   return barbecue;
 }
 
 export async function getBarbecues() {
-  return await Barbecue.find({ where: { userId: 1 } });
+  const bar = await Barbecue.find({ where: { userId: 1 } });
+  console.log(bar);
+  return bar;
 }

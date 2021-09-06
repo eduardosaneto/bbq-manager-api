@@ -19,6 +19,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
+  await clearDatabase();
   await getConnection().close();
 });
 
@@ -28,13 +29,13 @@ describe("GET /pokemons", () => {
     const session = await authFactory.createSession(user.id, user.email);
     const barbecue = await barbecuesFactory.createBarbecue();
     const response = await test.get("/barbecues").set("Authorization", `Bearer ${session.token}`);
-    expect(response.body[0]).toStrictEqual({ ...barbecue });
+    expect(response.body[0].lentgh).toEqual(barbecue);
     expect(response.status).toBe(200);
   });
 
   it("should answer with status 401 for an invalid token authorization", async () => {
-    const Unauthorized = await test.get("/pokemons");
-    const response = await test.get("/pokemons").set("Authorization", "Bearer token");
+    const Unauthorized = await test.get("/barbecues");
+    const response = await test.get("/barbecues").set("Authorization", "Bearer token");
     expect(Unauthorized.status).toBe(401);
     expect(response.status).toBe(401);
   });
