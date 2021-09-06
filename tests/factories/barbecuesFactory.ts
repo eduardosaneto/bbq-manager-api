@@ -16,9 +16,3 @@ export async function createBarbecue() {
 
   return barbecue;
 }
-
-export async function getBarbecues() {
-  const bar = await Barbecue.find({ where: { userId: 1 } });
-  console.log(bar);
-  return bar;
-}
