@@ -2,6 +2,7 @@ import "../../src/setup";
 import supertest from "supertest";
 import { getConnection } from "typeorm";
 import app, { init } from "../../src/app";
+import faker from "faker";
 
 import * as usersFactory from "../factories/usersFactory";
 import * as authFactory from "../factories/authFactory";
@@ -23,8 +24,8 @@ afterAll(async () => {
   await getConnection().close();
 });
 
-describe("GET /pokemons", () => {
-  it("should answer status 200 and an array with all pokemons when is sent a valid token", async () => {
+describe("GET /barbecues", () => {
+  it("should answer status 200 when is sent a valid token", async () => {
     const user = await usersFactory.createUser();
     const session = await authFactory.createSession(user.id, user.email);
     await barbecuesFactory.createBarbecue();
@@ -38,5 +39,26 @@ describe("GET /pokemons", () => {
     const response = await test.get("/barbecues").set("Authorization", "Bearer token");
     expect(Unauthorized.status).toBe(401);
     expect(response.status).toBe(401);
+  });
+});
+
+describe("POST /send-barbecue", () => {
+  it("should return status 201 for a sucessful barbecue addition", async () => {
+    const user = await usersFactory.createUser();
+    const session = await authFactory.createSession(user.id, user.email);
+    const body = {
+      name: faker.name.firstName(),
+      date: "05/12",
+      description: faker.lorem.lines(),
+      observations: faker.lorem.lines(),
+      amountCollected: 150,
+      totalParticipants: 10,
+      userId: 1,
+    };
+    const response = await supertest(app)
+      .post("/send-barbecue")
+      .send(body)
+      .set("Authorization", `Bearer ${session.token}`);
+    expect(response.status).toEqual(201);
   });
 });

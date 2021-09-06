@@ -20,6 +20,7 @@ app.use(errorHandler);
 app.post("/sign-up", userControllers.signUp);
 app.post("/sign-in", authControllers.signIn);
 app.get("/barbecues", authMiddleware, barbecueControllers.getBarbecues);
+app.post("/send-barbecue", authMiddleware, barbecueControllers.addBarbecue);
 
 export async function init() {
   await connectDatabase();
