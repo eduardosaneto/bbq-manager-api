@@ -32,4 +32,14 @@ export default class Users extends BaseEntity {
     const user = await this.findOne({ email });
     if (user) return true;
   }
+
+  static async findByEmailAndPassword(email: string, password: string) {
+    const user = await this.findOne({ email });
+
+    if (user && bcrypt.compareSync(password, user.password)) {
+      return user;
+    }
+
+    return null;
+  }
 }
