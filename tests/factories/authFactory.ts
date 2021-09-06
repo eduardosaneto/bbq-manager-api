@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 
 import Session from "../../src/entities/Sessions";
-import User from "../../src/entities/Users";
 
 export async function createSession(userId: number, userEmail: string) {
   const token = jwt.sign(
