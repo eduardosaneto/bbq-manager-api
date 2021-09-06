@@ -10,4 +10,10 @@ export default class Sessions extends BaseEntity {
 
   @Column()
   userId: number;
+
+  static async createNew(userId: number, token: string) {
+    const session = this.create({ userId, token });
+    await session.save();
+    return session;
+  }
 }
