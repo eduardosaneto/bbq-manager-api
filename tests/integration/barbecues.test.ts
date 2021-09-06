@@ -27,9 +27,9 @@ describe("GET /pokemons", () => {
   it("should answer status 200 and an array with all pokemons when is sent a valid token", async () => {
     const user = await usersFactory.createUser();
     const session = await authFactory.createSession(user.id, user.email);
-    const barbecue = await barbecuesFactory.createBarbecue();
+    await barbecuesFactory.createBarbecue();
     const response = await test.get("/barbecues").set("Authorization", `Bearer ${session.token}`);
-    expect(response.body[0].lentgh).toEqual(barbecue);
+    expect(response.body.length).toEqual(1);
     expect(response.status).toBe(200);
   });
 
