@@ -24,6 +24,9 @@ export default class Barbecues extends BaseEntity {
   @Column()
   totalParticipants: string;
 
+  @Column()
+  userId: number;
+
   @OneToMany(() => Participants, p => p.participant)
   barbecue: Participants[];
 }
