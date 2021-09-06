@@ -20,7 +20,7 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
 
     if (userSession.token !== token) return res.sendStatus(401);
 
-    res.locals.userId = { id: userId };
+    res.locals.userId = userId;
     next();
   } catch (e) {
     return res.sendStatus(401);

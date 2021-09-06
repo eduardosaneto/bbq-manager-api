@@ -19,10 +19,10 @@ export default class Barbecues extends BaseEntity {
   observations: string;
 
   @Column()
-  amountCollected: string;
+  amountCollected: number;
 
   @Column()
-  totalParticipants: string;
+  totalParticipants: number;
 
   @Column()
   userId: number;

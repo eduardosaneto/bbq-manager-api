@@ -21,9 +21,6 @@ export default class Participants extends BaseEntity {
   @Column()
   barbecueId: number;
 
-  @Column()
-  totalParticipants: string;
-
   @ManyToOne(() => Barbecues, b => b.barbecue)
   participant: Barbecues;
 }
