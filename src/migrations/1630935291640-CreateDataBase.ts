@@ -1,14 +1,14 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateDataBase1630910464922 implements MigrationInterface {
-  name = "CreateDataBase1630910464922";
+export class CreateDataBase1630935291640 implements MigrationInterface {
+  name = "CreateDataBase1630935291640";
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      "CREATE TABLE \"participants\" (\"id\" SERIAL NOT NULL, \"name\" character varying NOT NULL, \"drinks\" boolean NOT NULL, \"amountToPay\" integer NOT NULL, \"payed\" boolean NOT NULL, \"barbecueId\" integer NOT NULL, \"totalParticipants\" character varying NOT NULL, \"participantId\" integer, CONSTRAINT \"PK_1cda06c31eec1c95b3365a0283f\" PRIMARY KEY (\"id\"))",
+      "CREATE TABLE \"participants\" (\"id\" SERIAL NOT NULL, \"name\" character varying NOT NULL, \"drinks\" boolean NOT NULL, \"amountToPay\" integer NOT NULL, \"payed\" boolean NOT NULL, \"barbecueId\" integer NOT NULL, \"participantId\" integer, CONSTRAINT \"PK_1cda06c31eec1c95b3365a0283f\" PRIMARY KEY (\"id\"))",
     );
     await queryRunner.query(
-      "CREATE TABLE \"barbecues\" (\"id\" SERIAL NOT NULL, \"name\" character varying NOT NULL, \"date\" character varying NOT NULL, \"description\" character varying NOT NULL, \"observations\" character varying NOT NULL, \"amountCollected\" character varying NOT NULL, \"totalParticipants\" character varying NOT NULL, \"userId\" integer NOT NULL, CONSTRAINT \"PK_0c58f9d6bd1d8116438178588b3\" PRIMARY KEY (\"id\"))",
+      "CREATE TABLE \"barbecues\" (\"id\" SERIAL NOT NULL, \"name\" character varying NOT NULL, \"date\" character varying NOT NULL, \"description\" character varying NOT NULL, \"observations\" character varying NOT NULL, \"amountCollected\" integer NOT NULL, \"totalParticipants\" integer NOT NULL, \"userId\" integer NOT NULL, CONSTRAINT \"PK_0c58f9d6bd1d8116438178588b3\" PRIMARY KEY (\"id\"))",
     );
     await queryRunner.query(
       "CREATE TABLE \"sessions\" (\"id\" SERIAL NOT NULL, \"token\" character varying NOT NULL, \"userId\" integer NOT NULL, CONSTRAINT \"PK_3238ef96f18b355b671619111bc\" PRIMARY KEY (\"id\"))",
