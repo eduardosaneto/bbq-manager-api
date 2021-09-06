@@ -7,3 +7,9 @@ export async function getBarbecues(req: Request, res: Response) {
   const barbecues = await barbecueServices.getAllBarbecues(userId);
   res.send(barbecues);
 }
+
+export async function addBarbecue(req: Request, res: Response) {
+  const userId = res.locals.userId;
+  const barbecues = await barbecueServices.addNewBarbecue(userId);
+  res.send(barbecues);
+}
