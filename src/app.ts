@@ -8,6 +8,7 @@ import connectDatabase from "./database";
 
 import * as userControllers from "./controllers/client/user";
 import * as authControllers from "./controllers/client/auth";
+import * as barbecueControllers from "./controllers/client/barbecue";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { errorHandler } from "./middlewares/errorHandler";
 
