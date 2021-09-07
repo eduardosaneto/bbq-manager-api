@@ -10,7 +10,15 @@ export async function getParcitipantsByBarbecueId(barbecueId: number) {
 export async function addBarbecueParticipant(data: ParticipantData) {
   await Participants.addParticipant(data);
   if (data.payed) {
-    await Barbecue.updatePeople(data);
-    await Barbecue.updateAmount(data);
+    await Barbecue.increasePeople(data);
+    await Barbecue.increaseAmount(data);
   }
+}
+
+export async function checkPayment(personId: number, barbecueId: number) {
+  await Participants.checkPayment(personId, barbecueId);
+}
+
+export async function uncheckPayment(personId: number, barbecueId: number) {
+  await Participants.uncheckPayment(personId, barbecueId);
 }

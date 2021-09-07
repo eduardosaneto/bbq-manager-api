@@ -48,13 +48,13 @@ export default class Barbecues extends BaseEntity {
     return barbecue;
   }
 
-  static async updatePeople(data: ParticipantData) {
+  static async increasePeople(data: ParticipantData) {
     const barbecue = await this.findOne({ where: { id: data.barbecueId } });
     const newNumberOfPeople = barbecue.totalParticipants + 1;
     await this.update({ id: data.barbecueId }, { totalParticipants: newNumberOfPeople });
   }
 
-  static async updateAmount(data: ParticipantData) {
+  static async increaseAmount(data: ParticipantData) {
     const barbecue = await this.findOne({ where: { id: data.barbecueId } });
     const updatedAmount = barbecue.amountCollected + data.amountToPay;
     await this.update({ id: data.barbecueId }, { amountCollected: updatedAmount });
