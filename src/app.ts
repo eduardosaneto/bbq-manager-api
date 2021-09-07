@@ -9,6 +9,7 @@ import connectDatabase from "./database";
 import * as userControllers from "./controllers/client/user";
 import * as authControllers from "./controllers/client/auth";
 import * as barbecueControllers from "./controllers/client/barbecue";
+import * as participantsControllers from "./controllers/client/participants";
 import { authMiddleware } from "./middlewares/authMiddleware";
 import { errorHandler } from "./middlewares/errorHandler";
 
@@ -21,6 +22,7 @@ app.post("/sign-up", userControllers.signUp);
 app.post("/sign-in", authControllers.signIn);
 app.get("/barbecues", authMiddleware, barbecueControllers.getBarbecues);
 app.get("/barbecues/:id", authMiddleware, barbecueControllers.getBarbecueById);
+app.get("/barbecues/:id/participants", authMiddleware, participantsControllers.getBarbecueParticipants);
 app.post("/send-barbecue", authMiddleware, barbecueControllers.addBarbecue);
 
 export async function init() {
