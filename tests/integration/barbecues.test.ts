@@ -51,6 +51,8 @@ describe("POST /send-barbecue", () => {
       date: "05/12",
       description: faker.lorem.lines(),
       observations: faker.lorem.lines(),
+      foodValue: 20,
+      drinkValue: 20,
       amountCollected: 150,
       totalParticipants: 10,
       userId: 1,
