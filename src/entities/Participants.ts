@@ -23,4 +23,9 @@ export default class Participants extends BaseEntity {
 
   @ManyToOne(() => Barbecues, b => b.barbecue)
   participant: Barbecues;
+
+  static async getParticipants(barbecueId: number) {
+    const participants = await this.find({ where: { barbecueId } });
+    return participants;
+  }
 }
