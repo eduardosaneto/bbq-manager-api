@@ -20,6 +20,12 @@ export default class Barbecues extends BaseEntity {
   observations: string;
 
   @Column()
+  foodValue: number;
+
+  @Column()
+  drinkValue: number;
+
+  @Column()
   amountCollected: number;
 
   @Column()
@@ -28,8 +34,8 @@ export default class Barbecues extends BaseEntity {
   @Column()
   userId: number;
 
-  @OneToMany(() => Participants, p => p.participant)
-  barbecue: Participants[];
+  @OneToMany(() => Participants, p => p.barbecue)
+  participants: Participants[];
 
   static async saveBarbecue(data: BarbecueData) {
     const newBarbecue = this.create(data);

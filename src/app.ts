@@ -23,6 +23,7 @@ app.post("/sign-in", authControllers.signIn);
 app.get("/barbecues", authMiddleware, barbecueControllers.getBarbecues);
 app.get("/barbecues/:id", authMiddleware, barbecueControllers.getBarbecueById);
 app.get("/barbecues/:id/participants", authMiddleware, participantsControllers.getBarbecueParticipants);
+app.post("/barbecues/:id/add-participants", authMiddleware, participantsControllers.addBarbecueParticipant);
 app.post("/send-barbecue", authMiddleware, barbecueControllers.addBarbecue);
 
 export async function init() {
