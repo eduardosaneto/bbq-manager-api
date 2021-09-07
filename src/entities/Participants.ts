@@ -1,4 +1,5 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { ParticipantData } from "../interfaces/ParticipantData";
 import Barbecues from "./Barbecues";
 
 @Entity("participants")
@@ -21,11 +22,16 @@ export default class Participants extends BaseEntity {
   @Column()
   barbecueId: number;
 
-  @ManyToOne(() => Barbecues, b => b.barbecue)
-  participant: Barbecues;
+  @ManyToOne(() => Barbecues, b => b.participants)
+  barbecue: Barbecues;
 
   static async getParticipants(barbecueId: number) {
     const participants = await this.find({ where: { barbecueId } });
     return participants;
+  }
+
+  static async addParticipant(data: ParticipantData) {
+    const newParticipant = this.create(data);
+    await newParticipant.save();
   }
 }
