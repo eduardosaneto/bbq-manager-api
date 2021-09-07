@@ -9,3 +9,8 @@ export async function getAllBarbecues(userId: number) {
 export async function createBarbecue(data: BarbecueData) {
   await Barbecue.saveBarbecue(data);
 }
+
+export async function getBarbecueById(barbecueId: number) {
+  const barbecue = await Barbecue.getBarbecueById(barbecueId);
+  return barbecue;
+}

@@ -14,3 +14,9 @@ export async function addBarbecue(req: Request, res: Response) {
   await barbecueServices.createBarbecue(barbecueData);
   res.sendStatus(201);
 }
+
+export async function getBarbecueById(req: Request, res: Response) {
+  const barbecueId = Number(req.params.id);
+  const barbecue = await barbecueServices.getBarbecueById(barbecueId);
+  res.send(barbecue);
+}
