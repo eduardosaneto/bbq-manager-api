@@ -25,6 +25,8 @@ app.get("/barbecues/:id", authMiddleware, barbecueControllers.getBarbecueById);
 app.get("/barbecues/:id/participants", authMiddleware, participantsControllers.getBarbecueParticipants);
 app.post("/barbecues/:id/add-participants", authMiddleware, participantsControllers.addBarbecueParticipant);
 app.post("/send-barbecue", authMiddleware, barbecueControllers.addBarbecue);
+app.post("/participant/:id/check", authMiddleware, participantsControllers.checkPayment);
+app.post("/participant/:id/uncheck", authMiddleware, participantsControllers.uncheckPayment);
 
 export async function init() {
   await connectDatabase();

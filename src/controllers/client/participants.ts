@@ -14,3 +14,9 @@ export async function addBarbecueParticipant(req: Request, res: Response) {
   await participantsServices.addBarbecueParticipant(participantData);
   res.sendStatus(201);
 }
+
+export async function checkPayment(req: Request, res: Response) {
+  const personId = Number(req.params.id);
+  await participantsServices.checkPayment(personId);
+  res.sendStatus(201);
+}

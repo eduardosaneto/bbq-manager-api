@@ -14,3 +14,7 @@ export async function addBarbecueParticipant(data: ParticipantData) {
     await Barbecue.updateAmount(data);
   }
 }
+
+export async function checkPayment(personId: number) {
+  await Participants.checkPayment(personId);
+}

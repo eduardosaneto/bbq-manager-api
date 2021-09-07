@@ -34,4 +34,8 @@ export default class Participants extends BaseEntity {
     const newParticipant = this.create(data);
     await newParticipant.save();
   }
+
+  static async checkPayment(personId: number) {
+    await this.update({ id: personId }, { payed: true });
+  }
 }
