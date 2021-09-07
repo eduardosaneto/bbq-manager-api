@@ -35,4 +35,9 @@ export default class Barbecues extends BaseEntity {
     const newBarbecue = this.create(data);
     await newBarbecue.save();
   }
+
+  static async getBarbecueById(barbecueId: number) {
+    const barbecue = await this.find({ where: { id: barbecueId } });
+    return barbecue;
+  }
 }
