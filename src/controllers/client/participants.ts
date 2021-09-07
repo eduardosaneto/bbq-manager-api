@@ -17,12 +17,14 @@ export async function addBarbecueParticipant(req: Request, res: Response) {
 
 export async function checkPayment(req: Request, res: Response) {
   const personId = Number(req.params.id);
-  await participantsServices.checkPayment(personId);
+  const barbecueId = Number(req.body.barbecueId);
+  await participantsServices.checkPayment(personId, barbecueId);
   res.sendStatus(201);
 }
 
 export async function uncheckPayment(req: Request, res: Response) {
   const personId = Number(req.params.id);
-  await participantsServices.uncheckPayment(personId);
+  const barbecueId = Number(req.body.barbecueId);
+  await participantsServices.uncheckPayment(personId, barbecueId);
   res.sendStatus(201);
 }

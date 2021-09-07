@@ -35,11 +35,23 @@ export default class Participants extends BaseEntity {
     await newParticipant.save();
   }
 
-  static async checkPayment(personId: number) {
+  static async checkPayment(personId: number, barbecueId: number) {
     await this.update({ id: personId }, { payed: true });
+    const barbecue = await Barbecues.findOne({ where: { id: barbecueId } });
+    const newNumberOfPeople = barbecue.totalParticipants + 1;
+    await Barbecues.update({ id: barbecueId }, { totalParticipants: newNumberOfPeople });
+    const participant = await this.findOne({ where: { id: personId } });
+    const updatedAmount = barbecue.amountCollected + participant.amountToPay;
+    await Barbecues.update({ id: barbecueId }, { amountCollected: updatedAmount });
   }
 
-  static async uncheckPayment(personId: number) {
+  static async uncheckPayment(personId: number, barbecueId: number) {
     await this.update({ id: personId }, { payed: false });
+    const barbecue = await Barbecues.findOne({ where: { id: barbecueId } });
+    const newNumberOfPeople = barbecue.totalParticipants - 1;
+    await Barbecues.update({ id: barbecueId }, { totalParticipants: newNumberOfPeople });
+    const participant = await this.findOne({ where: { id: personId } });
+    const updatedAmount = barbecue.amountCollected - participant.amountToPay;
+    await Barbecues.update({ id: barbecueId }, { amountCollected: updatedAmount });
   }
 }
