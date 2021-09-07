@@ -1,5 +1,6 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { BarbecueData } from "../interfaces/BarbecueData";
+import { ParticipantData } from "../interfaces/ParticipantData";
 import Participants from "./Participants";
 
 @Entity("barbecues")
@@ -45,5 +46,17 @@ export default class Barbecues extends BaseEntity {
   static async getBarbecueById(barbecueId: number) {
     const barbecue = await this.find({ where: { id: barbecueId } });
     return barbecue;
+  }
+
+  static async updatePeople(data: ParticipantData) {
+    const barbecue = await this.findOne({ where: { id: data.barbecueId } });
+    const newNumberOfPeople = barbecue.totalParticipants + 1;
+    await this.update({ id: data.barbecueId }, { totalParticipants: newNumberOfPeople });
+  }
+
+  static async updateAmount(data: ParticipantData) {
+    const barbecue = await this.findOne({ where: { id: data.barbecueId } });
+    const updatedAmount = barbecue.amountCollected + data.amountToPay;
+    await this.update({ id: data.barbecueId }, { amountCollected: updatedAmount });
   }
 }
