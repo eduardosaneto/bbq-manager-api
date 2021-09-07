@@ -19,12 +19,12 @@ export async function checkPayment(req: Request, res: Response) {
   const personId = Number(req.params.id);
   const barbecueId = Number(req.body.barbecueId);
   await participantsServices.checkPayment(personId, barbecueId);
-  res.sendStatus(201);
+  res.sendStatus(200);
 }
 
 export async function uncheckPayment(req: Request, res: Response) {
   const personId = Number(req.params.id);
   const barbecueId = Number(req.body.barbecueId);
   await participantsServices.uncheckPayment(personId, barbecueId);
-  res.sendStatus(201);
+  res.sendStatus(200);
 }
