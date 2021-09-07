@@ -38,4 +38,8 @@ export default class Participants extends BaseEntity {
   static async checkPayment(personId: number) {
     await this.update({ id: personId }, { payed: true });
   }
+
+  static async uncheckPayment(personId: number) {
+    await this.update({ id: personId }, { payed: false });
+  }
 }

@@ -20,3 +20,9 @@ export async function checkPayment(req: Request, res: Response) {
   await participantsServices.checkPayment(personId);
   res.sendStatus(201);
 }
+
+export async function uncheckPayment(req: Request, res: Response) {
+  const personId = Number(req.params.id);
+  await participantsServices.uncheckPayment(personId);
+  res.sendStatus(201);
+}

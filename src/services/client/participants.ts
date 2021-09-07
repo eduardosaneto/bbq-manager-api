@@ -18,3 +18,7 @@ export async function addBarbecueParticipant(data: ParticipantData) {
 export async function checkPayment(personId: number) {
   await Participants.checkPayment(personId);
 }
+
+export async function uncheckPayment(personId: number) {
+  await Participants.uncheckPayment(personId);
+}
