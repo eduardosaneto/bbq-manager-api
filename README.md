@@ -1,4 +1,4 @@
-# Trinca BBQ Manager:
+# Trinca BBQ Manager - API :
 
 API to help you manage your weekend barbecues. Or daily, if you're a really big fan like me.
 
