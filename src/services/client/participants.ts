@@ -9,8 +9,8 @@ export async function getParcitipantsByBarbecueId(barbecueId: number) {
 
 export async function addBarbecueParticipant(data: ParticipantData) {
   await Participants.addParticipant(data);
+  await Barbecue.increasePeople(data);
   if (data.payed) {
-    await Barbecue.increasePeople(data);
     await Barbecue.increaseAmount(data);
   }
 }
