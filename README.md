@@ -27,6 +27,7 @@ https://trinca-bbq-manager.vercel.app/
 
 - [ ] Edit a barbecue event
 - [ ] Delete a barbecue event
+- [ ] Delete a person from barbecue
 
 ## Tech tools :wrench:
 
